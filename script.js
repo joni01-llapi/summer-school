@@ -7,23 +7,88 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     });
 });
 
-// ── Contact form ──
-document.getElementById('contact-form').addEventListener('submit', e => {
+// ── Helper: show feedback on button ──
+function flashBtn(btn, label, bgColor, success = true) {
+  const original = btn.textContent;
+  const origBg = btn.style.background;
+  btn.textContent = label;
+  btn.style.background = bgColor;
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = original;
+    btn.style.background = origBg;
+    btn.disabled = false;
+  }, 2800);
+}
+
+// ── Contact form → API ──
+document.getElementById('contact-form').addEventListener('submit', async e => {
     e.preventDefault();
     const btn = e.target.querySelector('button');
-    const original = btn.textContent;
-    btn.textContent = 'Message Sent ✓';
-    btn.style.background = '#16a34a';
-    btn.style.borderColor = '#16a34a';
-    btn.style.color = '#fff';
-    e.target.reset();
-    setTimeout(() => {
-        btn.textContent = original;
-        btn.style.background = '';
-        btn.style.borderColor = '';
-        btn.style.color = '';
-    }, 2800);
+    const fd = new FormData(e.target);
+
+    try {
+      await submitContact({
+        name: fd.get('name'),
+        email: fd.get('email'),
+        phone: fd.get('phone'),
+        track_interest: fd.get('track_interest'),
+        message: fd.get('message')
+      });
+      e.target.reset();
+      flashBtn(btn, '✓ Sent!', '#2563eb');
+    } catch (err) {
+      flashBtn(btn, '✗ ' + err.message, '#dc2626');
+    }
 });
+
+// ── Register buttons (on pricing cards) ──
+document.querySelectorAll('.btn-block').forEach(btn => {
+  btn.addEventListener('click', async e => {
+    const card = btn.closest('.offer-card');
+    if (!card) return;
+
+    e.preventDefault();
+    const plan = card.querySelector('h3')?.textContent || 'Core';
+    const name = prompt('Your full name:');
+    if (!name) return;
+    const email = prompt('Your email:');
+    if (!email) return;
+    const track = prompt('Preferred track (or leave blank):') || 'Not sure yet!';
+
+    try {
+      await submitRegistration({
+        full_name: name,
+        email: email,
+        offer_plan: plan,
+        track: track
+      });
+      flashBtn(btn, '✓ Registered!', '#16a34a');
+    } catch (err) {
+      flashBtn(btn, '✗ ' + err.message, '#dc2626');
+    }
+  });
+});
+
+// ── Newsletter subscribe ──
+const subForm = document.getElementById('subscribe-form');
+if (subForm) {
+  subForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const input = subForm.querySelector('input');
+    const btn = subForm.querySelector('button');
+    const email = input.value.trim();
+    if (!email) return;
+
+    try {
+      await subscribeNewsletter(email);
+      input.value = '';
+      flashBtn(btn, '✓ Subscribed!', '#16a34a');
+    } catch (err) {
+      flashBtn(btn, '✗ ' + err.message, '#dc2626');
+    }
+  });
+}
 
 // ── Animated counters ──
 let countersAnimated = false;
@@ -40,7 +105,7 @@ function animateCounters() {
         function tick(now) {
             const elapsed = now - start;
             const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
             el.textContent = Math.floor(eased * target);
             if (progress < 1) requestAnimationFrame(tick);
             else el.textContent = target;
@@ -69,7 +134,6 @@ document.querySelectorAll('.card, .timeline-item, .faq-item').forEach(el => {
     observer.observe(el);
 });
 
-// Stats ribbon is always visible
 const statsRibbon = document.querySelector('.stats-ribbon');
 if (statsRibbon) {
     statsRibbon.style.opacity = '0';

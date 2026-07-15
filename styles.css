@@ -6,23 +6,26 @@
 
 :root {
     --blue-50:  #f0f7ff;
-    --blue-100: #e0effe;
-    --blue-200: #bae0fd;
+    --blue-100: #dbeafe;
+    --blue-200: #bfdbfe;
+    --blue-300: #93c5fd;
+    --blue-400: #60a5fa;
     --blue-500: #3b82f6;
     --blue-600: #2563eb;
     --blue-700: #1d4ed8;
     --blue-800: #1e40af;
+    --blue-900: #1e3a5f;
     --white:    #ffffff;
-    --off-white: #fafbfc;
-    --gray-50:  #f8f9fb;
-    --gray-100: #f0f2f5;
-    --gray-200: #e4e7ec;
-    --gray-400: #9ca3af;
-    --text:     #111827;
-    --text-light: #6b7280;
-    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-    --shadow:    0 4px 16px rgba(0,0,0,0.06);
-    --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+    --off-white: #f8faff;
+    --gray-50:  #f0f5ff;
+    --gray-100: #e8eef8;
+    --gray-200: #dce3ef;
+    --gray-400: #8a9bbf;
+    --text:     #1a2a4a;
+    --text-light: #4a5a7a;
+    --shadow-sm: 0 1px 2px rgba(37, 99, 235, 0.06);
+    --shadow:    0 4px 16px rgba(37, 99, 235, 0.08);
+    --shadow-lg: 0 12px 40px rgba(37, 99, 235, 0.1);
     --radius: 14px;
     --radius-sm: 10px;
 }
@@ -46,17 +49,17 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2.5rem;
-    background: rgba(255,255,255,0.88);
+    background: rgba(255,255,255,0.92);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     z-index: 100;
-    border-bottom: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--blue-100);
 }
 
 .nav-brand {
     font-size: 1.15rem;
     font-weight: 700;
-    color: var(--text);
+    color: var(--blue-800);
     letter-spacing: -0.3px;
 }
 
@@ -86,14 +89,14 @@ nav {
     padding: 7rem 2rem 3rem;
     position: relative;
     overflow: hidden;
-    background: var(--white);
+    background: linear-gradient(180deg, var(--blue-50) 0%, var(--white) 100%);
 }
 
 .hero-bg {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(ellipse 80% 60% at 50% 0%, var(--blue-50) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 60% at 50% 0%, var(--blue-100) 0%, transparent 70%),
         radial-gradient(ellipse 40% 50% at 80% 80%, var(--blue-50) 0%, transparent 70%);
     pointer-events: none;
 }
@@ -106,7 +109,7 @@ nav {
 
 .hero-badge {
     display: inline-block;
-    background: var(--blue-50);
+    background: var(--blue-100);
     color: var(--blue-700);
     padding: 0.4rem 1.2rem;
     border-radius: 999px;
@@ -119,7 +122,7 @@ nav {
 .hero h1 {
     font-size: 3.8rem;
     margin-bottom: 1.25rem;
-    color: var(--text);
+    color: var(--blue-900);
     line-height: 1.12;
     letter-spacing: -1.5px;
     font-weight: 800;
@@ -160,35 +163,35 @@ nav {
 .btn {
     display: inline-block;
     padding: 0.9rem 2.2rem;
-    background: var(--text);
+    background: var(--blue-600);
     color: var(--white);
     text-decoration: none;
     border-radius: var(--radius-sm);
     font-weight: 600;
     font-size: 0.95rem;
-    border: 2px solid var(--text);
+    border: 2px solid var(--blue-600);
     cursor: pointer;
     transition: all 0.2s;
     letter-spacing: -0.2px;
 }
 
 .btn:hover {
-    background: #1f2937;
-    border-color: #1f2937;
+    background: var(--blue-700);
+    border-color: var(--blue-700);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.2);
 }
 
 .btn-outline {
     background: transparent;
-    color: var(--text);
-    border-color: var(--gray-200);
+    color: var(--blue-700);
+    border-color: var(--blue-200);
 }
 
 .btn-outline:hover {
-    background: var(--gray-50);
-    border-color: var(--gray-400);
-    color: var(--text);
+    background: var(--blue-50);
+    border-color: var(--blue-400);
+    color: var(--blue-800);
     box-shadow: none;
 }
 
@@ -222,7 +225,7 @@ h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: var(--text);
+    color: var(--blue-900);
     letter-spacing: -0.8px;
     font-weight: 800;
     line-height: 1.2;
@@ -235,7 +238,7 @@ h2 {
     font-size: 1.1rem;
 }
 
-.section-sub a { color: var(--blue-600); }
+.section-sub a { color: var(--blue-600); font-weight: 600; }
 
 /* ════════════ CARDS ════════════ */
 .cards {
@@ -250,14 +253,14 @@ h2 {
     background: var(--white);
     padding: 2rem;
     border-radius: var(--radius);
-    border: 1px solid var(--gray-100);
+    border: 1px solid var(--blue-100);
     transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
 }
 
 .card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
-    border-color: var(--gray-200);
+    border-color: var(--blue-300);
 }
 
 .card-icon {
@@ -269,7 +272,7 @@ h2 {
     margin-bottom: 0.6rem;
     font-size: 1.15rem;
     font-weight: 700;
-    color: var(--text);
+    color: var(--blue-800);
     letter-spacing: -0.3px;
 }
 
@@ -289,12 +292,12 @@ h2 {
 }
 
 .track-tags li {
-    background: var(--gray-50);
-    color: var(--text-light);
+    background: var(--blue-50);
+    color: var(--blue-700);
     padding: 0.25rem 0.65rem;
     border-radius: 6px;
     font-size: 0.78rem;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 /* ════════════ STATS RIBBON ════════════ */
@@ -307,7 +310,7 @@ h2 {
     z-index: 2;
     background: var(--white);
     border-radius: var(--radius);
-    border: 1px solid var(--gray-100);
+    border: 1px solid var(--blue-100);
     box-shadow: var(--shadow);
     padding: 2rem;
     text-align: center;
@@ -317,7 +320,7 @@ h2 {
     display: block;
     font-size: 2.4rem;
     font-weight: 800;
-    color: var(--text);
+    color: var(--blue-600);
     line-height: 1.1;
     letter-spacing: -1px;
 }
@@ -352,13 +355,13 @@ h2 {
 }
 
 .offer-premium {
-    border: 2px solid var(--text);
+    border: 2px solid var(--blue-600);
 }
 
 .offer-price {
     font-size: 2.8rem;
     font-weight: 800;
-    color: var(--text);
+    color: var(--blue-900);
     margin: 0.75rem 0;
     letter-spacing: -1px;
 }
@@ -379,7 +382,7 @@ h2 {
     padding: 0.5rem 0;
     color: var(--text-light);
     font-size: 0.9rem;
-    border-bottom: 1px solid var(--gray-50);
+    border-bottom: 1px solid var(--blue-50);
 }
 
 .offer-features li:last-child { border-bottom: none; }
@@ -411,7 +414,7 @@ h2 {
 .week-num {
     font-size: 2rem;
     font-weight: 800;
-    color: var(--gray-200);
+    color: var(--blue-300);
     min-width: 60px;
     letter-spacing: -1px;
     line-height: 1;
@@ -421,20 +424,21 @@ h2 {
     background: var(--white);
     padding: 1.5rem;
     border-radius: var(--radius-sm);
-    border: 1px solid var(--gray-100);
+    border: 1px solid var(--blue-100);
     flex: 1;
     transition: box-shadow 0.2s, border-color 0.2s;
 }
 
 .timeline-content:hover {
     box-shadow: var(--shadow);
-    border-color: var(--gray-200);
+    border-color: var(--blue-300);
 }
 
 .timeline-content h3 {
     margin-bottom: 0.35rem;
     font-weight: 700;
     font-size: 1.05rem;
+    color: var(--blue-800);
 }
 
 .timeline-content p {
@@ -462,7 +466,7 @@ h2 {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    border-top: 1px solid var(--gray-100);
+    border-top: 1px solid var(--blue-100);
     padding-top: 1rem;
 }
 
@@ -499,7 +503,7 @@ h2 {
 }
 
 .faq-item {
-    border-bottom: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--blue-100);
     padding: 0;
 }
 
@@ -512,13 +516,13 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--text);
+    color: var(--blue-800);
 }
 
 .faq-item summary::after {
     content: '+';
     font-size: 1.3rem;
-    color: var(--text-light);
+    color: var(--blue-400);
     font-weight: 300;
     transition: transform 0.2s;
 }
@@ -553,12 +557,12 @@ h2 {
     gap: 1rem;
     padding: 1.25rem;
     border-radius: var(--radius-sm);
-    border: 1px solid var(--gray-100);
+    border: 1px solid var(--blue-100);
     align-items: center;
     transition: border-color 0.2s;
 }
 
-.contact-card:hover { border-color: var(--gray-200); }
+.contact-card:hover { border-color: var(--blue-300); }
 
 .contact-icon { font-size: 1.5rem; flex-shrink: 0; }
 
@@ -566,6 +570,7 @@ h2 {
     display: block;
     font-size: 0.9rem;
     margin-bottom: 0.15rem;
+    color: var(--blue-800);
 }
 
 .contact-card a,
@@ -585,7 +590,7 @@ h2 {
 
 input, textarea, select {
     padding: 0.9rem 1rem;
-    border: 1.5px solid var(--gray-200);
+    border: 1.5px solid var(--blue-200);
     border-radius: var(--radius-sm);
     font-size: 0.93rem;
     font-family: inherit;
@@ -596,16 +601,18 @@ input, textarea, select {
 
 input:focus, textarea:focus, select:focus {
     outline: none;
-    border-color: var(--text);
-    box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
+    border-color: var(--blue-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
 }
 
 select { cursor: pointer; }
 
+::placeholder { color: var(--blue-300); }
+
 /* ════════════ FOOTER ════════════ */
 footer {
     background: var(--off-white);
-    border-top: 1px solid var(--gray-100);
+    border-top: 1px solid var(--blue-100);
     padding: 4rem 2rem 0;
 }
 
@@ -622,6 +629,7 @@ footer {
     font-weight: 700;
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
+    color: var(--blue-800);
 }
 
 .footer-grid p { color: var(--text-light); font-size: 0.9rem; }
@@ -650,7 +658,7 @@ footer {
     max-width: 1150px;
     margin: 0 auto;
     padding: 1.5rem 0;
-    border-top: 1px solid var(--gray-100);
+    border-top: 1px solid var(--blue-100);
     text-align: center;
     color: var(--text-light);
     font-size: 0.85rem;
